@@ -7,7 +7,7 @@ module LaWeAppFX {
 	requires javafx.media;
 	requires java.logging;
 	
-	opens application to javafx.graphics, javafx.fxml;
+	//opens application to javafx.graphics, javafx.fxml;
 	opens modelo to javafx.graphics, javafx.fxml;
 	opens logica to javafx.graphics, javafx.fxml;
 }
