@@ -113,7 +113,7 @@ public class ControladorVtnReproductor implements Initializable {
         // To create a media player you need to implement the structure of the 3 nested media objects,
         // media, media player, and media view.
         // The media player wraps the media and the media view wraps the media player.
-        mediaVideo = new Media(new File("src/resources/hello-world.mp4").toURI().toString());
+        mediaVideo = new Media(new File("src/resources/Weon - Pecos Paul Kele - Documental.mp4").toURI().toString());
         //mediaVideo = new Media(new File("https://www.youtube.com/watch?v=bC4XB6JAaoU").toURI().toString());
         
        

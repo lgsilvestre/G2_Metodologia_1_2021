@@ -1,8 +1,11 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -10,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import AppPackage.AnimationClass;
 
@@ -40,7 +44,10 @@ public class VistaVtnPrincipal {
 	JButton botonBuscar;
 	// AnimationClass para el Slideshow
 	AnimationClass AC = new AnimationClass();
-
+	JTextField cajaTexto1;
+	JButton logo;
+	JButton buscar;
+	
 	public VistaVtnPrincipal() {
 		initcomponents();
 		
@@ -92,9 +99,79 @@ public class VistaVtnPrincipal {
 		imgFlechaDer = new JLabel();
 		imgFlechaIzq = new JLabel();
 		iniciarImagenes();
+		CajaTextos();
+		botones();
 
 	}
+	
+	private void botones(){
+		
+		buscar = new JButton();
+        buscar.setBounds(740,10,30,30);
+        buscar.setVisible(true);
+        buscar.setBackground(Color.WHITE);
+        Image Foto = new ImageIcon(getClass().getResource("/recursos/buscar.png")).getImage();
+        Image newimg = Foto.getScaledInstance(buscar.getWidth(), buscar.getHeight(),Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(newimg); 
+        buscar.setIcon(imageIcon);
+        panel.add(buscar);
+        
+        logo = new JButton();
+        logo.setBounds(0,0,100,70);
+        logo.setVisible(true);
+        logo.setBackground(Color.WHITE);
+        Image Foto2 = new ImageIcon(getClass().getResource("/recursos/logo.png")).getImage();
+        Image newimg2 = Foto2.getScaledInstance(logo.getWidth(), logo.getHeight(),Image.SCALE_SMOOTH);
+        ImageIcon imageIcon2 = new ImageIcon(newimg2); 
+        logo.setIcon(imageIcon2);
+        panel.add(logo);
+        
+        
+       ActionListener oyentedeaccion1 = new ActionListener(){
+         	
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               
+               
+                
+           }
+        };
+        buscar.addActionListener(oyentedeaccion1);
+        
+        
+        
+        ActionListener oyentedeaccion2 = new ActionListener(){
+         	
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               
+               VistaVtnPrincipal ventana = new VistaVtnPrincipal();
+               dispose();
+                
+           }
+        };
+        logo.addActionListener(oyentedeaccion2);
+	
+	}
 
+	private void CajaTextos(){	
+			
+		cajaTexto1 = new JTextField();
+        cajaTexto1.setBounds(590,10,150,30);
+        panel.add(cajaTexto1);
+		
+		
+        ActionListener oyentedeaccion1 = new ActionListener(){
+         	
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                
+           }
+        };
+        cajaTexto1.addActionListener(oyentedeaccion1);
+	
+	}
 	
 
 	private void iniciarImagenes() {

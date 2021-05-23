@@ -56,7 +56,7 @@ public class ControladorVtnPrincipal{
 
 						case 0: {		
 							/*Podemos ir cambiando la imagen de los labes mientras sucede la animación, así solo usamos 2 label*/
-							ImageIcon icon1 = new ImageIcon(getClass().getResource("/recursos/1.png"));
+							ImageIcon icon1 = new ImageIcon(getClass().getResource("/recursos/Weon - Pecos Paul Kele - portada.png"));
 							vtnPrincipal.getImagen1().setIcon(icon1);
 							
 							Thread.sleep(6000); // 3 segundos
