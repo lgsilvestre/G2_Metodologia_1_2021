@@ -26,6 +26,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import modelo.Main;
+import modelo.Pelicula;
 
 import java.io.File;
 import java.net.URL;
@@ -103,9 +105,7 @@ public class ControladorVtnReproductor implements Initializable {
     private ImageView ivExit;
     
     
-    //Pelicula elegida
-    //private Pelicula peliElegida = ControladorVtnPrincipal.get
-
+    
     // The initialize method is called after all @FXML annotated members have been injected.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -113,52 +113,52 @@ public class ControladorVtnReproductor implements Initializable {
         // To create a media player you need to implement the structure of the 3 nested media objects,
         // media, media player, and media view.
         // The media player wraps the media and the media view wraps the media player.
-        mediaVideo = new Media(new File("src/resources/Weon - Pecos Paul Kele - Documental.mp4").toURI().toString());
-        //mediaVideo = new Media(new File("https://www.youtube.com/watch?v=bC4XB6JAaoU").toURI().toString());
+        //mediaVideo = new Media(new File("src/recursos/hello-world.mp4").toURI().toString());
+        mediaVideo = new Media(Main.getPeliRepro().getFile().toURI().toString());
         
        
         mpVideo = new MediaPlayer(mediaVideo);
         mvVideo.setMediaPlayer(mpVideo);
 
         // Get the paths of the images and make them into images.
-        Image imagePlay = new Image(new File("src/resources/play-btn.png").toURI().toString());
+        Image imagePlay = new Image(new File("src/recursos/play-btn.png").toURI().toString());
         // file:/D:/wittcode-2/java-2/send-video-client/src/resources/play-btn.png
         ivPlay = new ImageView(imagePlay);
         ivPlay.setFitWidth(35);
         ivPlay.setFitHeight(35);
 
         // Button stop image.
-        Image imageStop = new Image(new File("src/resources/stop-btn.png").toURI().toString());
+        Image imageStop = new Image(new File("src/recursos/stop-btn.png").toURI().toString());
         ivPause = new ImageView(imageStop);
         ivPause.setFitHeight(35);
         ivPause.setFitWidth(35);
 
         // Restart button image.
-        Image imageRestart = new Image(new File("src/resources/restart-btn.png").toURI().toString());
+        Image imageRestart = new Image(new File("src/recursos/restart-btn.png").toURI().toString());
         ivRestart = new ImageView(imageRestart);
         ivRestart.setFitWidth(35);
         ivRestart.setFitHeight(35);
 
         // Volume (speaker) image.
-        Image imageVol = new Image(new File("src/resources/volume.png").toURI().toString());
+        Image imageVol = new Image(new File("src/recursos/volume.png").toURI().toString());
         ivVolume = new ImageView(imageVol);
         ivVolume.setFitWidth(35);
         ivVolume.setFitHeight(35);
 
         // Full screen image.
-        Image imageFull = new Image(new File("src/resources/fullscreen.png").toURI().toString());
+        Image imageFull = new Image(new File("src/recursos/fullscreen.png").toURI().toString());
         ivFullScreen = new ImageView(imageFull);
         ivFullScreen.setFitHeight(35);
         ivFullScreen.setFitWidth(35);
 
         // Muted speaker image.
-        Image imageMute = new Image(new File("src/resources/mute.png").toURI().toString());
+        Image imageMute = new Image(new File("src/recursos/mute.png").toURI().toString());
         ivMute = new ImageView(imageMute);
         ivMute.setFitWidth(35);
         ivMute.setFitHeight(35);
 
         // Exit full screen image.
-        Image imageExit = new Image(new File("src/resources/exitscreen.png").toURI().toString());
+        Image imageExit = new Image(new File("src/recursos/exitscreen.png").toURI().toString());
         ivExit = new ImageView(imageExit);
         ivExit.setFitHeight(35);
         ivExit.setFitWidth(35);
@@ -470,4 +470,6 @@ public class ControladorVtnReproductor implements Initializable {
             }
         }, mpVideo.currentTimeProperty()));
     }
+
 }
+

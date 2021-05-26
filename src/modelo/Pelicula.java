@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -9,39 +10,29 @@ public class Pelicula {
 	private String titulo;
 	private ImageIcon thumbnail;
 	private String genero;
-	private JLabel label;
-	//private URL L;
-	public Pelicula(String t, ImageIcon th, String g) {
+	private File dir;
+	public Pelicula(String t, ImageIcon th, String g, File  d) {
 		this.titulo=t;
 		this.genero=g;
 		this.thumbnail=th;
+		this.dir = d;
 				
-	}
-	
-	public String getGenero() {
-		return genero;
-	}
-	public ImageIcon getThumbnail() {
-		return thumbnail;
 	}
 	public String getTitulo() {
 		return titulo;
 	}
-	public JLabel getLabel() {
-		return label;
+	public ImageIcon getThumbnail() {
+		return thumbnail;
 	}
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public String getGenero() {
+		return genero;
 	}
-	public void setThumbnail(ImageIcon thumbnail) {
-		this.thumbnail = thumbnail;
+	public File getFile() {
+		return dir;
 	}
-	public void setGenero(String genero) {
-		this.genero = genero;
+	public String getDirThumbnail() {
+		return getThumbnail().toString();
 	}
-	
-	public void setLabel(JLabel label) {
-		this.label = label;
-	}
+
 	
 }

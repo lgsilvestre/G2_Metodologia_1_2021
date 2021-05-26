@@ -21,7 +21,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/LaWeApp/librerias/AnimatonClass.jar">
+	<classpathentry kind="lib" path="librerias/AnimatonClass.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

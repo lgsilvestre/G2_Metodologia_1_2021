@@ -24,7 +24,7 @@ package ui;
 	import javax.swing.JTextArea;
 	import javax.swing.JTextField;
 
-import modelo.Main2;
+import modelo.Main;
 
 
 	public class VistaVtnLogin extends JFrame {
@@ -42,7 +42,6 @@ import modelo.Main2;
 	    public VistaVtnLogin(){
 	        
 	    	setSize(1300,770);
-	        setVisible(true);
 	        setTitle("LaWeApp");
 	        setResizable(false);
 	        setLocationRelativeTo(null);
@@ -255,7 +254,7 @@ import modelo.Main2;
 	                
 	                 if((usuario.equals("correcto"))&&(contraseña.equals("correcto"))){
 	                     dispose();
-	                     Main2.loginAceptado();
+	                     Main.loginAceptado();
 	                 }
 	                 
 	                 else {
@@ -344,6 +343,7 @@ import modelo.Main2;
 	                contador++;
 	            }
 	            if(existe_codigo==0){
+	            	reader.close();
 	                return "incorrecto";
 	            }
 	           reader.close();
