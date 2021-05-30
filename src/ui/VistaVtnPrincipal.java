@@ -6,7 +6,13 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -17,6 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import AppPackage.AnimationClass;
+//import AppPackage.AnimationClass;
+//import ReferencedAnimationClass;
+import modelo.Main;
 import modelo.Pelicula;
 
 public class VistaVtnPrincipal extends JFrame {
@@ -46,7 +55,7 @@ public class VistaVtnPrincipal extends JFrame {
 	JLabel imgPF7;
 	JLabel imgPF8;
 	JLabel imgPF9;
-	//Labels flechas
+	// Labels flechas
 	JLabel imgFlechaDer;
 	JLabel imgFlechaIzq;
 
@@ -57,11 +66,12 @@ public class VistaVtnPrincipal extends JFrame {
 	JTextField cajaTexto1;
 	JButton logo;
 	JButton buscar;
-	
+	String buscador="";
+
 	// Label para indicar cosas
 	JLabel loMasVisto;
 	JLabel loMasNuevo;
-	
+
 	public VistaVtnPrincipal() {
 		initcomponents();
 
@@ -71,6 +81,7 @@ public class VistaVtnPrincipal extends JFrame {
 		frame.setSize(800, 600);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setUndecorated(true);
 
 		frame.setVisible(true);
 
@@ -83,24 +94,24 @@ public class VistaVtnPrincipal extends JFrame {
 		panel.add(imgPF1);
 		panel.add(imgPF2);
 		panel.add(imgPF3);
-		
+
 		panel.add(imgPF4);
 		panel.add(imgPF5);
 		panel.add(imgPF6);
 		panel.add(imgPF7);
 		panel.add(imgPF8);
 		panel.add(imgPF9);
-		
+
 		imgPF4.setVisible(false);
 		imgPF5.setVisible(false);
 		imgPF6.setVisible(false);
 		imgPF7.setVisible(false);
 		imgPF8.setVisible(false);
 		imgPF9.setVisible(false);
-		
+
 		panel.add(imgFlechaDer);
 		panel.add(imgFlechaIzq);
-		
+
 		panel.add(loMasNuevo);
 		panel.add(loMasVisto);
 	}
@@ -110,7 +121,7 @@ public class VistaVtnPrincipal extends JFrame {
 		panel = new JPanel();
 		label = new JLabel("JFrame By Example");
 		button = new JButton();
-		
+
 		imagen1 = new JLabel();
 		imagen2 = new JLabel();
 		imagen3 = new JLabel();
@@ -129,7 +140,7 @@ public class VistaVtnPrincipal extends JFrame {
 
 		imgFlechaDer = new JLabel();
 		imgFlechaIzq = new JLabel();
-		
+
 		loMasNuevo = new JLabel();
 		loMasVisto = new JLabel();
 
@@ -151,7 +162,7 @@ public class VistaVtnPrincipal extends JFrame {
 		panel.add(buscar);
 
 		logo = new JButton();
-		logo.setBounds(0, 0, 100, 70);
+		logo.setBounds(0, 0, 80, 50);
 		logo.setVisible(true);
 		logo.setBackground(Color.WHITE);
 		Image Foto2 = new ImageIcon(getClass().getResource("/recursos/logo.png")).getImage();
@@ -162,8 +173,38 @@ public class VistaVtnPrincipal extends JFrame {
 
 		ActionListener oyentedeaccion1 = new ActionListener() {
 
-			@Override
+			@SuppressWarnings("null")
+
 			public void actionPerformed(ActionEvent ae) {
+
+				buscador = cajaTexto1.getText();
+				cajaTexto1.setEnabled(false);
+
+				if (cajaTexto1.equals("")) {
+					// cajaTexto1.setEnabled(true);
+				} else {
+
+					try {
+
+						boolean palabra = barra_busqueda(buscador);
+						if (palabra == true) {
+
+							System.out.println("ENCONTRADOOO");
+							
+							VistaVtnBusqueda frame2 = new VistaVtnBusqueda(buscador);
+							frame.dispose();
+							//frame.setVisible(false);
+							
+							
+
+						}
+						cajaTexto1.setEnabled(true);
+
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 
 			}
 		};
@@ -171,11 +212,11 @@ public class VistaVtnPrincipal extends JFrame {
 
 		ActionListener oyentedeaccion2 = new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent ae) {
 
-				VistaVtnPrincipal ventana = new VistaVtnPrincipal();
-				dispose();
+				Main.loginAceptado();
+				frame.dispose();
+				//frame.setVisible(false);
 
 			}
 		};
@@ -191,7 +232,6 @@ public class VistaVtnPrincipal extends JFrame {
 
 		ActionListener oyentedeaccion1 = new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent ae) {
 
 			}
@@ -199,43 +239,88 @@ public class VistaVtnPrincipal extends JFrame {
 		cajaTexto1.addActionListener(oyentedeaccion1);
 
 	}
-	
+
+	private boolean barra_busqueda(String palabra) throws FileNotFoundException, IOException {
+
+		String linea;
+		int numLineas = 300, contador = 0, existe_codigo = 0;
+
+		String datos[] = new String[numLineas];
+		//PARA QUE TE LOS LEA EN EL JAR
+		BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/recursos/multimedia.txt")));
+		linea = reader.readLine();
+
+		palabra = palabra.toLowerCase(); // convierte palabra a letras minusculas
+
+		while (linea != null && contador < numLineas) {
+
+			datos[contador] = linea;
+			linea = reader.readLine();
+
+			int cont = 0;
+			StringTokenizer st = new StringTokenizer(datos[contador]);
+
+			while (st.hasMoreTokens()) {
+
+				String array = st.nextToken();
+				cont = cont + 1;
+
+				if (cont == 1) {
+
+					if (array.equals(palabra)) {
+
+						existe_codigo = 1;
+						return true;
+					}
+				}
+			}
+
+			contador++;
+		}
+
+		if (existe_codigo == 0) {
+			return false;
+		}
+		reader.close();
+		return false;
+
+	}
+
 	private void iniciarLetras() {
 		loMasNuevo.setBounds(350, 80, 500, 500);
 		loMasNuevo.setText("Lo más nuevo");
 		loMasNuevo.resize(500, 500);
-		
-		
+
 		loMasVisto.setBounds(350, -200, 500, 500);
 		loMasVisto.setText("Lo más visto");
 		loMasVisto.resize(500, 500);
 	}
+
 	public void iniciarImagenes(ArrayList<Pelicula> listaPelicula) {
-		
-		//Logo
+
+		// Logo
 		imagenLogo.setBounds(15, 0, 50, 50);
 		Image ilogo = new ImageIcon(getClass().getResource("/recursos/logo.png")).getImage();
 		imagenLogo.setIcon(new ImageIcon(
 				ilogo.getScaledInstance(imagenLogo.getWidth(), imagenLogo.getHeight(), Image.SCALE_SMOOTH)));
-		
+
 		// 3 Label del Slideshow, las mas populares
 
 		imagen1.setBounds(200, 60, 400, 222);
 		imagen2.setBounds(800, 60, 400, 222);
 		imagen3.setBounds(800, 60, 400, 222);
-		
-		//Por ahora seran las primeras 3 que se subieron
-		
+
+		// Por ahora seran las primeras 3 que se subieron
+
 		dirIconImg1 = listaPelicula.get(0).getDirThumbnail();
 		dirIconImg2 = listaPelicula.get(1).getDirThumbnail();
 		dirIconImg3 = listaPelicula.get(2).getDirThumbnail();
-		
+
 		imagen1.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(0).getDirThumbnail())));
 		imagen2.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(1).getDirThumbnail())));
 		imagen3.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(2).getDirThumbnail())));
 
-			
-		//Flechas
+		// Flechas
 
 		imgFlechaDer.setBounds(700, 400, 50, 50);
 		Image iFlechaDer = new ImageIcon(getClass().getResource("/recursos/flechader.png")).getImage();
@@ -247,65 +332,59 @@ public class VistaVtnPrincipal extends JFrame {
 		imgFlechaIzq.setIcon(new ImageIcon(
 				iFlechaIzq.getScaledInstance(imgFlechaIzq.getWidth(), imgFlechaIzq.getHeight(), Image.SCALE_SMOOTH)));
 
-		
-
 	}
+
 //Lo iniciamos y borramos para poder entregarlo los nuevos eventos
 	public void iniciarPanelFinal(int estado, ArrayList<Pelicula> listaPelicula) {
-		
-		
+
 		// Panel Final
-				int nPeliculas = listaPelicula.size();
-				System.out.println("peliculas numero: " +nPeliculas);
-				imgPF1.setBounds(100, 340, 170, 200);
-				// Le aumentamos la posición en x por el ancho de la imagen: 240+10.... mejor
-				// 200
-				imgPF2.setBounds(300, 340, 170, 200);
-				imgPF3.setBounds(500, 340, 170, 200);
-				imgPF4.setBounds(100, 340, 170, 200);
-				imgPF5.setBounds(300, 340, 170, 200);
-				imgPF6.setBounds(500, 340, 170, 200);
-				imgPF7.setBounds(100, 340, 170, 200);
-				imgPF8.setBounds(300, 340, 170, 200);
-				imgPF9.setBounds(500, 340, 170, 200);
-				
-				
-				imgPF1.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas-1).getDirThumbnail())));
+		int nPeliculas = listaPelicula.size();
+		System.out.println("peliculas numero: " + nPeliculas);
+		imgPF1.setBounds(100, 340, 170, 200);
+		// Le aumentamos la posición en x por el ancho de la imagen: 240+10.... mejor
+		// 200
+		imgPF2.setBounds(300, 340, 170, 200);
+		imgPF3.setBounds(500, 340, 170, 200);
+		imgPF4.setBounds(100, 340, 170, 200);
+		imgPF5.setBounds(300, 340, 170, 200);
+		imgPF6.setBounds(500, 340, 170, 200);
+		imgPF7.setBounds(100, 340, 170, 200);
+		imgPF8.setBounds(300, 340, 170, 200);
+		imgPF9.setBounds(500, 340, 170, 200);
 
-				imgPF2.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas-2).getDirThumbnail())));
+		imgPF1.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas - 1).getDirThumbnail())));
 
-				imgPF3.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas-3).getDirThumbnail())));
-				
-				imgPF4.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas-4).getDirThumbnail())));
+		imgPF2.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas - 2).getDirThumbnail())));
 
-				imgPF5.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas-5).getDirThumbnail())));
+		imgPF3.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas - 3).getDirThumbnail())));
 
-				imgPF6.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas-6).getDirThumbnail())));
-				
-				imgPF7.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas-7).getDirThumbnail())));
+		imgPF4.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas - 4).getDirThumbnail())));
 
-				imgPF8.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas-8).getDirThumbnail())));
+		imgPF5.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas - 5).getDirThumbnail())));
 
-				imgPF9.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas-9).getDirThumbnail())));
-				// int x, int y, width, height
+		imgPF6.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas - 6).getDirThumbnail())));
 
+		imgPF7.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas - 7).getDirThumbnail())));
 
-		
-	}	
-	
-public void ocultarPanelFinal() {
-	imgPF1.setVisible(false);
-	imgPF2.setVisible(false);
-	imgPF3.setVisible(false);
-	imgPF4.setVisible(false);
-	imgPF5.setVisible(false);
-	imgPF6.setVisible(false);
-	imgPF7.setVisible(false);
-	imgPF8.setVisible(false);
-	imgPF9.setVisible(false);
-}
-	
-	
+		imgPF8.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas - 8).getDirThumbnail())));
+
+		imgPF9.setIcon(new ImageIcon(getClass().getResource(listaPelicula.get(nPeliculas - 9).getDirThumbnail())));
+		// int x, int y, width, height
+
+	}
+
+	public void ocultarPanelFinal() {
+		imgPF1.setVisible(false);
+		imgPF2.setVisible(false);
+		imgPF3.setVisible(false);
+		imgPF4.setVisible(false);
+		imgPF5.setVisible(false);
+		imgPF6.setVisible(false);
+		imgPF7.setVisible(false);
+		imgPF8.setVisible(false);
+		imgPF9.setVisible(false);
+	}
+
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -409,9 +488,6 @@ public void ocultarPanelFinal() {
 	public void setImgPF3(JLabel imgPF3) {
 		this.imgPF3 = imgPF3;
 	}
-
-
-
 
 	public JLabel getImgFlechaDer() {
 		return imgFlechaDer;
@@ -540,8 +616,5 @@ public void ocultarPanelFinal() {
 	public void setLoMasNuevo(JLabel loMasNuevo) {
 		this.loMasNuevo = loMasNuevo;
 	}
-
-
-
 
 }

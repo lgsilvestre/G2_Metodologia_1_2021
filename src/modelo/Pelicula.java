@@ -10,8 +10,9 @@ public class Pelicula {
 	private String titulo;
 	private ImageIcon thumbnail;
 	private String genero;
-	private File dir;
-	public Pelicula(String t, ImageIcon th, String g, File  d) {
+	// Sirve para cuando hagamos con mas archivos y no los podamos meter en el jar private File dir;
+	private String dir;
+	public Pelicula(String t, ImageIcon th, String g, String  d) {
 		this.titulo=t;
 		this.genero=g;
 		this.thumbnail=th;
@@ -27,7 +28,7 @@ public class Pelicula {
 	public String getGenero() {
 		return genero;
 	}
-	public File getFile() {
+	public String getFile() {
 		return dir;
 	}
 	public String getDirThumbnail() {

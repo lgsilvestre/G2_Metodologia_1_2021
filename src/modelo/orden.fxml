@@ -19,6 +19,13 @@
          <HBox.margin>
             <Insets left="15.0" />
          </HBox.margin></Button>
+         
+         <Button fx:id="volver" style="-fx-cursor: hand;">
+         <HBox.margin>
+            <Insets left="20.0" />
+         </HBox.margin></Button>
+         
+         
       <HBox fx:id="hboxVolume" alignment="CENTER">
          <children>
             <Label fx:id="labelVolume" style="-fx-cursor: hand;">

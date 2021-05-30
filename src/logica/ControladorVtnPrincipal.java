@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -29,9 +30,12 @@ public class ControladorVtnPrincipal {
 	private ArrayList<Pelicula> listaPelicula = new ArrayList<>();
 	private VistaVtnPrincipal vtnPrincipal;
 	private int contFlecha = 0;
+	private int algo;
 
-	public ControladorVtnPrincipal(/* ArrayList<Pelicula> p, */ VistaVtnPrincipal v) {
+
+	public ControladorVtnPrincipal(/* ArrayList<Pelicula> p, */ VistaVtnPrincipal v, int algo) {
 		/* this.listaPelicula=p; */
+		this.algo = algo;
 		try {
 			cargarContenido();
 			this.vtnPrincipal = v;
@@ -54,13 +58,13 @@ public class ControladorVtnPrincipal {
 
 		String datos[] = new String[numLineas];
 
-		BufferedReader reader = new BufferedReader(new FileReader("multimedia.txt"));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/recursos/multimedia.txt")));
 		linea = reader.readLine();
 
 		String titulo;
 		ImageIcon thumbnail;
 		String genero;
-		File file;
+		String file;
 
 		while (linea != null && contador < numLineas) {
 
@@ -77,7 +81,7 @@ public class ControladorVtnPrincipal {
 				System.out.println(thumbnail);
 				genero = st.nextToken().toString();
 				System.out.println(genero);
-				file = new File(st.nextToken().toString());
+				file = new String (st.nextToken().toString());
 				System.out.println(file);
 
 				Pelicula peliculaCar = new Pelicula(titulo, thumbnail, genero, file);
@@ -480,10 +484,12 @@ public class ControladorVtnPrincipal {
 
 		public void mouseClicked(MouseEvent e) {
 
-			vtnPrincipal.getFrame().setVisible(false);
+			//vtnPrincipal.getFrame().setVisible(false);
+			vtnPrincipal.getFrame().dispose();
 			Main.setPeliRepro(peliRepro);
 			modelo.Main.reproducir(null);
-			;
+			//ControladorVtnReproductor.cambiar();
+
 
 		}
 

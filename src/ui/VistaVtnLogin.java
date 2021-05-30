@@ -11,7 +11,9 @@ package ui;
 	import java.io.FileNotFoundException;
 	import java.io.FileReader;
 	import java.io.IOException;
-	import java.util.StringTokenizer;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 	import java.util.logging.Level;
 	import java.util.logging.Logger;
 	import javax.swing.BorderFactory;
@@ -151,67 +153,12 @@ import modelo.Main;
 	        panel.add(cajaTexto2);
 	        
 	        
-	        ActionListener oyentedeaccion1 = new ActionListener(){
-	         	
-	             @Override
-	             public void actionPerformed(ActionEvent ae) {
-	                
-	                 usuario=new String(cajaTexto1.getText());
-	                 
-	                 try {
-	                     String result = buscar(usuario);
-	                     
-	                     if(result=="correcto"){
-	                         
-	                        usuario="correcto";
-	                     }
-	                     else{
-	                        usuario="incorrecto";
-	                    }
-	                     
-	                 } catch (IOException ex) {
-	                     Logger.getLogger(VistaVtnLogin.class.getName()).log(Level.SEVERE, null, ex);
-	                 }
-	                 
-	                 
-	                 
-	            }
-	         };
-	         cajaTexto1.addActionListener(oyentedeaccion1);
-	        
-	        
-	        
-	        
-	        
-	        ActionListener oyentedeaccion2 = new ActionListener(){
-	         	
-	             @Override
-	             public void actionPerformed(ActionEvent ae) {
-	                
-	                 
-	                 contraseña=new String(cajaTexto2.getText());
-	                 try {
-	                     String result = buscar(contraseña);
-	                     if(result=="correcto"){
-	                     
-	                     contraseña="correcto";
-	                    }
-	                    else{
-	                        contraseña="incorrecto";
-	                    }
-	                 } catch (IOException ex) {
-	                     Logger.getLogger(VistaVtnLogin.class.getName()).log(Level.SEVERE, null, ex);
-	                 }
-	                 
-	             
-	             }
-	         };
-	         cajaTexto2.addActionListener(oyentedeaccion2);
+	       
 	        
 	        
 	    }
 	    
-	    private void colocarBotones(){
+private void colocarBotones(){
 	        
 	        
 	        
@@ -246,30 +193,65 @@ import modelo.Main;
 	         logo.addActionListener(oyentedeaccion1);
 	        
 	        
-	         
 	         ActionListener oyentedeaccion2 = new ActionListener(){
 	         	
 	             @Override
 	             public void actionPerformed(ActionEvent ae) {
-	                
-	                 if((usuario.equals("correcto"))&&(contraseña.equals("correcto"))){
-	                     dispose();
-	                     Main.loginAceptado();
+			        usuario= cajaTexto1.getText();
+			    	contraseña= cajaTexto2.getText();
+			    	try {
+	                     String result = buscar(usuario);
+	                     
+	                     if(result=="correcto"){
+	                         
+	                        usuario="correcto";
+	                     }
+	                     else{
+	                        usuario="incorrecto";
+	                    }
+	                     
+	                 } catch (IOException ex) {
+	                     Logger.getLogger(VistaVtnLogin.class.getName()).log(Level.SEVERE, null, ex);
 	                 }
-	                 
-	                 else {
-	                     JTextArea error = new JTextArea("Usuario y/o contraseña incorrectos");
-	                     error.setBounds(550,505,300,20);
-	                     error.setVisible(true);
-	                     panel.add(error);
+			    	
+			    	try {
+	                     String result = buscar(contraseña);
+	                     
+	                     if(result=="correcto"){
+	                         
+	                        contraseña="correcto";
+	                     }
+	                     else{
+	                        contraseña="incorrecto";
+	                    }
+	                     
+	                 } catch (IOException ex) {
+	                     Logger.getLogger(VistaVtnLogin.class.getName()).log(Level.SEVERE, null, ex);
 	                 }
+			    	if(usuario.isEmpty() || contraseña.isEmpty()) {
+			 
+			    		
+			    	}else {
+			    		if(usuario.equals("correcto") && contraseña.equals("correcto")) {
+			    			
+			    			//JOptionPane.showMessageDialog(null, "bienvenido");
+			    			//panel_control pc = new panel_control();
+			    			//pc.setVisible(true);
+			    			dispose();
+			    			Main.loginAceptado();
+				    		
+			    		}else {
+			    			 //JOptionPane.showConfirmDialog(null,"su usuario o contraseña es incorrecto");
+		                     JTextArea error = new JTextArea("Usuario y/o contraseña incorrectos");
+		                     error.setBounds(550,505,300,20);
+		                     error.setVisible(true);
+		                     panel.add(error);
+			    		}
+			    	}
 	            }
 	         };
 	         boton1.addActionListener(oyentedeaccion2);
-	         
-	         
-	         
-	         
+	                 
 	    }
 	    
 	    @Override
@@ -300,8 +282,9 @@ import modelo.Main;
 	            int numLineas=300,contador=0,existe_codigo=0;
 	            
 	            String datos []=new String [numLineas];
-
-	            BufferedReader reader = new BufferedReader(new FileReader("datos.txt"));
+	          //  InputStream is = VistaVtnLogin.class.getResourceAsStream("datos.txt");
+	            //PARA QUE TE LOS LEA EN EL JAR
+	            BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/recursos/datos.txt")));
 	            linea = reader.readLine();
 	            while (linea != null && contador<numLineas){
 	        
