@@ -1,8 +1,6 @@
 Datos:
 lmedina18@alumnos.utalca.cl clave false
-lsilvestre@utalca.cl admin true
+lsilvestre@utalca.cl admin false
 aherrera18@alumnos.utalca.cl clave2 false
 jreveco19@alumnos.utalca.cl clave3 false
-a a false
 ee ee true
-iiii iiiii true

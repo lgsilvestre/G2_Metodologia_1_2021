@@ -12,3 +12,11 @@ weon /recursos/weon.png accion /recursos/weon.mp4
 rocky10 /recursos/10.png accion /recursos/rocky1.mp4
 rocky11 /recursos/11.png accion /recursos/rocky1.mp4
 rocky12 /recursos/12.png accion /recursos/rocky1.mp4
+rocky13 /recursos/34717-communion-1200w-tn-e1494071866851.jpg accion /recursos/vivo.mp3
+sss /recursos/34717-communion-1200w-tn-e1494071866851.jpg accion /recursos/vivo1.com.mp4
+aaa /recursos/34717-communion-1200w-tn-e1494071866851.jpg accion /recursos/JóvenesSantafe.mp4
+eee /recursos/depositphotos_39224955-stock-illustration-christianity-religion-cross-mosaic-concept.jpg accion /recursos/20210611ModelosDiscretosInicioLogica.mp4
+vvv /recursos/depositphotos_39224955-stock-illustration-christianity-religion-cross-mosaic-concept.jpg accion /recursos/20210611ModelosDiscretosInicioLogica.mp4
+bb /recursos/depositphotos_39224955-stock-illustration-christianity-religion-cross-mosaic-concept.jpg accion /recursos/20210611ModelosDiscretosInicioLogica.mp4
+nn /recursos/depositphotos_39224955-stock-illustration-christianity-religion-cross-mosaic-concept.jpg accion /recursos/20210611ModelosDiscretosInicioLogica.mp4
+mm /recursos/depositphotos_39224955-stock-illustration-christianity-religion-cross-mosaic-concept.jpg accion /recursos/20210611ModelosDiscretosInicioLogica.mp4

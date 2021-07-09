@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="anchorPane" fx:id="anchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logica.ControladorVtnAdmin">
    <children>
-      <Pane id="panelFondo" fx:id="panelFondo" prefHeight="401.0" prefWidth="479.0" style="-fx-background-color: white;">
+      <Pane id="panelFondo" fx:id="panelFondo" style="-fx-background-color: white;">
          <children>
-            <TableView fx:id="tablaContenido" layoutX="172.0" layoutY="84.0" prefHeight="294.0" prefWidth="293.0" style="-fx-background-color: orange;">
-              <columns>
-                <TableColumn id="columna1" fx:id="columna1" prefWidth="75.0" text="C1" />
-                <TableColumn id="columna2" fx:id="columna2" prefWidth="75.0" text="C2" />
-              </columns>
-               <padding>
-                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-               </padding>
-            </TableView>
-            <Pane id="panelSuperior" fx:id="panelSuperior" prefHeight="63.0" prefWidth="479.0" style="-fx-background-color: black;">
+            <Pane id="panelSuperior" fx:id="panelSuperior" prefHeight="56.0" prefWidth="638.0" style="-fx-background-color: black;">
                <children>
-                  <Button id="vistaUsuario" fx:id="vistaUsuario" layoutX="330.0" layoutY="16.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#IrAVistaUsuario" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Ir a vista de usuario" wrapText="true" />
+                  <Button id="vistaUsuario" fx:id="vistaUsuario" layoutX="489.0" layoutY="16.0" mnemonicParsing="false" onAction="#IrAVistaUsuario" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Ir a vista de usuario" wrapText="true" />
                </children>
             </Pane>
-            <Button id="botonAgregarUsuario" fx:id="botonAgregarUsuario" layoutX="14.0" layoutY="170.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#agregarUsuario" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Agregar Usuario" wrapText="true" />
-            <Button id="botonAgregarContenido" fx:id="botonAgregarContenido" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#agregarContenido" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Agregar Contenido" />
-            <Button id="botonAgregarUsuario" fx:id="botonMostrarTabla" layoutX="14.0" layoutY="84.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#mostrar" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="mostrar tabla" wrapText="true" />
-            <Button id="botonEliminarUsuario" fx:id="botonEliminarUsuario" layoutX="14.0" layoutY="263.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Eliminar Usuario" />
-            <Button id="botonEliminarContenido" fx:id="botonEliminarContenido" layoutX="14.0" layoutY="312.0" mnemonicParsing="false" onAction="#eliminarContenido" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Eliminar contenido" />
-            <Pane fx:id="panelFormulario" layoutX="158.0" layoutY="67.0" prefHeight="326.0" prefWidth="315.0">
+            <Button id="botonAgregarUsuario" fx:id="botonAgregarUsuario" layoutX="14.0" layoutY="235.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#agregarUsuario" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Agregar Usuario" wrapText="true" />
+            <Button id="botonAgregarContenido" fx:id="botonAgregarContenido" layoutX="14.0" layoutY="295.0" mnemonicParsing="false" onAction="#agregarContenido" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Agregar Contenido" />
+            <Button id="botonAgregarUsuario" fx:id="botonMostrarTabla" layoutX="6.0" layoutY="119.0" mnemonicParsing="false" onAction="#mostrar" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: orange;" text="Mostrar Lista Usuarios" wrapText="true" />
+            <Button id="botonEliminarUsuario" fx:id="botonEliminarUsuario" layoutX="14.0" layoutY="357.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Eliminar Usuario" />
+            <Button id="botonEliminarContenido" fx:id="botonEliminarContenido" layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#eliminarContenido" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Eliminar contenido" />
+            <Pane fx:id="panelFormulario" layoutX="158.0" layoutY="67.0" prefHeight="435.0" prefWidth="466.0">
                <children>
-                  <TextField fx:id="datoCorreo" layoutX="28.0" layoutY="121.0" />
-                  <TextField fx:id="datoClave" layoutX="28.0" layoutY="185.0" />
-                  <Button fx:id="guardar" layoutX="128.0" layoutY="273.0" mnemonicParsing="false" onAction="#guardar" style="-fx-background-color: orange;" text="Guardar" />
-                  <Label fx:id="labelUsuario" layoutX="34.0" layoutY="104.0" text="Usuario" />
-                  <Label fx:id="labelContraseña" layoutX="33.0" layoutY="168.0" text="Contraseña" />
-                  <CheckBox fx:id="soyAdmin" layoutX="54.0" layoutY="233.0" mnemonicParsing="false" text="Administrador" />
+                  <TextField fx:id="datoCorreo" layoutX="128.0" layoutY="143.0" />
+                  <Label fx:id="labelUsuario" layoutX="128.0" layoutY="126.0" text="Usuario" />
+                  <CheckBox fx:id="soyAdmin" layoutX="154.0" layoutY="265.0" mnemonicParsing="false" text="Administrador" />
+                  <TextField fx:id="cajaEliminar" layoutX="106.0" layoutY="230.0" prefHeight="31.0" prefWidth="194.0" />
+                  <Label fx:id="tituloUsuarioE" layoutX="125.0" layoutY="209.0" text="Correo del Usuario a eliminar" />
+                  <Label fx:id="labelContraseña" layoutX="126.0" layoutY="187.0" text="Contraseña" />
+                  <TextField fx:id="datoClave" layoutX="127.0" layoutY="205.0" />
+                  <Button fx:id="selArchivo" layoutX="300.0" layoutY="203.0" mnemonicParsing="false" onAction="#escogerArchivo" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Seleccionar Archivo" />
+                  <Button fx:id="selPortada" layoutX="300.0" layoutY="262.0" mnemonicParsing="false" onAction="#escogerImagen" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: orange;" text="Seleccionar Portada" />
+                  <TextField fx:id="cajaImagen" editable="false" layoutX="23.0" layoutY="262.0" prefHeight="31.0" prefWidth="263.0" />
+                  <Label fx:id="labelFormulario" layoutX="63.0" layoutY="61.0" text="Formulario para eliminar usuarios" underline="true">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="guardar" layoutX="160.0" layoutY="310.0" mnemonicParsing="false" onAction="#guardar" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: orange;" text="Guardar" />
+                  <TextField fx:id="cajaEliContenido" layoutX="90.0" layoutY="174.0" prefHeight="25.0" prefWidth="226.0" />
+                  <TextArea fx:id="listaUsuarios" editable="false" layoutX="18.0" layoutY="22.0" prefHeight="393.0" prefWidth="430.0" style="-fx-background-color: orange;" />
+                  <TextField fx:id="cajaArchivo" editable="false" layoutX="23.0" layoutY="202.0" prefHeight="31.0" prefWidth="263.0" />
+                  <TextField fx:id="tituloPel" layoutX="23.0" layoutY="143.0" />
+                  <Label fx:id="labelTitulo" layoutX="23.0" layoutY="113.0" prefHeight="27.0" prefWidth="45.0" text="Titulo">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="comboCategoria" layoutX="254.0" layoutY="143.0" onAction="#elegirCategoria" promptText="Seleccione Categoria" style="-fx-background-color: orange;" />
+                  <Label fx:id="labelEliContenido" layoutX="113.0" layoutY="147.0" text="Titulo del contenido a eliminar" />
                </children>
             </Pane>
+            <Separator layoutX="159.0" layoutY="64.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="7.0" />
          </children>
       </Pane>
    </children>

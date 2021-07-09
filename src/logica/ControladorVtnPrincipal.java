@@ -43,6 +43,7 @@ import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
@@ -461,10 +462,13 @@ public class ControladorVtnPrincipal implements Initializable {
 		int numLineas = 300, contador = 0;
 
 		String datos[] = new String[numLineas];
+		
+		BufferedReader reader = new BufferedReader(new FileReader("multimedia.txt"));
+        linea = reader.readLine();
 
-		BufferedReader reader = new BufferedReader(
+		/*BufferedReader reader = new BufferedReader(
 				new InputStreamReader(getClass().getResourceAsStream("/recursos/multimedia.txt")));
-		linea = reader.readLine();
+		linea = reader.readLine();*/
 
 		String titulo;
 		Image thumbnail;
@@ -558,11 +562,14 @@ public class ControladorVtnPrincipal implements Initializable {
 
 		String datos[] = new String[numLineas];
 		// PARA QUE TE LOS LEA EN EL JAR
-		BufferedReader reader = new BufferedReader(
+		BufferedReader reader = new BufferedReader(new FileReader("multimedia.txt"));
+        linea = reader.readLine();
+		
+		/*BufferedReader reader = new BufferedReader(
 				new InputStreamReader(getClass().getResourceAsStream("/recursos/multimedia.txt")));
-		linea = reader.readLine();
+		linea = reader.readLine();*/
 
-		palabra = palabra.toLowerCase(); // convierte palabra a letras minusculas
+        palabra=palabra.toLowerCase();// convierte palabra a letras minusculas
 
 		while (linea != null && contador < numLineas) {
 
@@ -603,6 +610,7 @@ public class ControladorVtnPrincipal implements Initializable {
 	 * Tiene el mismo titulo
 	 */
 	private Multimedia encontrarMultiTitulo(String tituloBuscado) {
+		tituloBuscado=tituloBuscado.toLowerCase();
 		for (int i = 0; i < listaMultimedia.size(); i++) {
 
 			if (listaMultimedia.get(i).getTitulo().equals(tituloBuscado)) {

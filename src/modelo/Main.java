@@ -28,7 +28,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logica.ControladorVtnReproductor;
-
+import java.io.BufferedReader;
 
 
 public class Main extends Application {
@@ -43,12 +43,12 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 		System.out.println("main "+n);
 		if(n.equals("true")) {
-	        Scene test = new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("Vistas/VistaVtnAdmin.fxml")), 800, 600);
+	        Scene test = new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("Vistas/VistaVtnAdmin.fxml")));
 	        primaryStage.setScene(test);
 	        primaryStage.show();
 		}
 		if(n.equals("false")) {
-			Scene test = new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("Vistas/VistaVtnPrincipal.fxml")), 800, 600);
+			Scene test = new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("Vistas/VistaVtnPrincipal.fxml")));
 			primaryStage.setScene(test);
 			primaryStage.show();
 		}
