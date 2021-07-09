@@ -42,8 +42,10 @@ import modelo.Main;
 	    Color color = new Color(255,128,0);
 	    String usuario="incorrecto";
 	    String contraseña="incorrecto";
+
 	    String adminn="ssssssssssssssssss";
 	    int lineaTxt=0;
+
 	    boolean bandera=true;
 	    
 	    int nivel=0,vuelta=0;
@@ -56,6 +58,7 @@ import modelo.Main;
 	        setLocationRelativeTo(null);
 	        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        iniciarComponentes();       
+
 	    }
 	    
 	    private void iniciarComponentes(){
@@ -137,6 +140,8 @@ import modelo.Main;
 	        
 	        
 	    }
+
+
 	    private void colocarCajasDeTexto(){
 	        
 	        
@@ -291,6 +296,7 @@ import modelo.Main;
 				 
 				    		
 				    	}else {
+
 				    		if(usuario.equals("correcto") && contraseña.equals("correcto") ) {
 				    			String administrador="";
 								try {
@@ -318,6 +324,7 @@ import modelo.Main;
 	            }
 	         };
 	         boton1.addActionListener(oyentedeaccion2);
+
 	                  
 	         ActionListener oyentedeaccion3 = new ActionListener(){
 	         	
@@ -344,7 +351,9 @@ import modelo.Main;
 	            	 
 	            }
 	         };
+
 	         ver.addActionListener(oyentedeaccion3);  
+
 	    }
 	    
 	    @Override
@@ -408,12 +417,13 @@ import modelo.Main;
 	                        if(array.equals(cadena)){
 
 	                            existe_codigo=1;
+
 	                            lineaTxt=contador;
 	                            return "correcto";
 	                        }
 	                      
 	                    }
-	                   
+
 	                }
 	               
 	                contador++;
@@ -425,6 +435,7 @@ import modelo.Main;
 	           reader.close();
 	           return "incorrecto";
 	        }
+
 	    public String buscar2()throws FileNotFoundException, IOException{
             
             String linea;
@@ -472,5 +483,5 @@ import modelo.Main;
            reader.close();
            return "incorrecto";
         }
-    
+
 }

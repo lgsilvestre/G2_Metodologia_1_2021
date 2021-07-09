@@ -470,6 +470,7 @@ public class ControladorVtnPrincipal implements Initializable {
 				new InputStreamReader(getClass().getResourceAsStream("/recursos/multimedia.txt")));
 		linea = reader.readLine();*/
 
+
 		String titulo;
 		Image thumbnail;
 		String genero;
@@ -486,7 +487,8 @@ public class ControladorVtnPrincipal implements Initializable {
 
 				titulo = st.nextToken().toString();
 				System.out.println(titulo);
-				thumbnail = new Image(st.nextToken().toString());
+				//System.out.println("aqqqqqqqqqqqqqqqqqqqqqqqqq "+st.nextToken().toString());
+				thumbnail = new Image("file:"+st.nextToken().toString());
 				System.out.println(thumbnail);
 				genero = st.nextToken().toString();
 				System.out.println(genero);
@@ -562,6 +564,7 @@ public class ControladorVtnPrincipal implements Initializable {
 
 		String datos[] = new String[numLineas];
 		// PARA QUE TE LOS LEA EN EL JAR
+
 		BufferedReader reader = new BufferedReader(new FileReader("multimedia.txt"));
         linea = reader.readLine();
 		
@@ -570,6 +573,7 @@ public class ControladorVtnPrincipal implements Initializable {
 		linea = reader.readLine();*/
 
         palabra=palabra.toLowerCase();// convierte palabra a letras minusculas
+
 
 		while (linea != null && contador < numLineas) {
 
@@ -610,7 +614,9 @@ public class ControladorVtnPrincipal implements Initializable {
 	 * Tiene el mismo titulo
 	 */
 	private Multimedia encontrarMultiTitulo(String tituloBuscado) {
+
 		tituloBuscado=tituloBuscado.toLowerCase();
+
 		for (int i = 0; i < listaMultimedia.size(); i++) {
 
 			if (listaMultimedia.get(i).getTitulo().equals(tituloBuscado)) {
@@ -710,5 +716,7 @@ public class ControladorVtnPrincipal implements Initializable {
 			Stage s = (Stage) imagen1.getScene().getWindow();
 			s.hide();
 		}
+
+
 	}
 }

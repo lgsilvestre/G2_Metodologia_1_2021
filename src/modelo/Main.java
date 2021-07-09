@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
+
 import Vistas.VistaVtnLogin;
 
 import javafx.application.Application;
@@ -28,17 +29,21 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logica.ControladorVtnReproductor;
+
 import java.io.BufferedReader;
+
 
 
 public class Main extends Application {
 	//Directorio de la pelicula a reproducir
-	private static Multimedia MultiRepro = new Multimedia("rocky1", new Image ("/recursos/rocky1.png"), "accion", new String("/recursos/rocky1.mp4"));	
+	//private static Multimedia MultiRepro = new Multimedia("rocky1", new Image ("/recursos/rocky1.png"), "accion", new String("/recursos/rocky1.mp4"));	
+	private static Multimedia MultiRepro;
 	public static String n="";
 	private static Stage ventanaPrincipal;
 	private static Parent root;
 	public static int  algo = 1;
 	public static Scene prueba;
+
 	@Override
     public void start(Stage primaryStage) throws Exception {
 		System.out.println("main "+n);
@@ -66,7 +71,7 @@ public class Main extends Application {
     public static void loginAceptado(String administrador) {
 		n=administrador;
 		reproducir(null);
-		
+
 	}
         
     public static void reproducir(String[] args) {
@@ -81,7 +86,7 @@ public class Main extends Application {
     public static Multimedia getMultiRepro() {
 		return MultiRepro;
 	}
-    
+
 }
 
 

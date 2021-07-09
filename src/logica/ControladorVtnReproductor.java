@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
@@ -132,7 +133,16 @@ public class ControladorVtnReproductor implements Initializable {
 		//Media a = new Media((getClass().getResourceAsStream("/recursos/batman.mp4")).toString());
 		
 		//mediaVideo = new Media(Main.getPeliRepro().getFile().toURI().toString());
-		mediaVideo = new Media(getClass().getResource(Main.getMultiRepro().getFile()).toExternalForm());
+		
+		
+		
+		//mediaVideo = new Media(getClass().getResource(Main.getMultiRepro().getFile()).toExternalForm());
+		
+		
+		
+		mediaVideo = new Media(Paths.get(Main.getMultiRepro().getFile()).toUri().toString());
+		
+		
 		//System.out.println(Main.getPeliRepro().getFile());
 		//mediaVideo = new Media(getClass().getResource(Main.getPeliRepro().getFile().toURI().toString()).toExternalForm());
 		//System.out.println(Main.getPeliRepro().getFile().toURI().toString());
