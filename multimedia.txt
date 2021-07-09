@@ -14,4 +14,3 @@ rocky11 recursos/11.png accion recursos/rocky1.mp4
 rocky12 recursos/12.png accion recursos/rocky1.mp4
 prueba4 recursos/gatojosepose.jpg accion recursos/MegaManX2-FlameStagStage-t5sQTAzzt6s.mp3
 prueba recursos/chasconpelao.jpg accion recursos/CastlevaniaIIMusic(NES)-BloodyTears(DayTheme)-e2oZtvjg5oA.mp3
-b recursos/91Wz30TIWvL._RI_.jpg accion recursos/JoséReveco_SeccionA_Ejercicio5.mp4
